@@ -10,7 +10,7 @@ struct fruitModel{
     var title:FruitTitle
     var image:String
     var price:String
-    var color:String
+    var cardColor:String
     
 }
 
