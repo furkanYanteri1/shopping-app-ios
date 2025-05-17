@@ -11,7 +11,7 @@ struct TopSellingView: View {
     let images: [fruitModel] = [
         .init(id: 0, title: .apple, image: "apple", price: "$1.99 each", cardColor: "1"),
         .init(id: 1, title: .appricot, image: "appricot", price: "$2.04 each", cardColor: "2"),
-        .init(id: 2, title: .avacado, image: "avocado", price: "$1.04 each", cardColor: "3"),
+        .init(id: 2, title: .avacado, image: "avacado", price: "$1.04 each", cardColor: "3"),
         .init(id: 3, title: .banana, image: "banana", price: "$2.06 each", cardColor: "4"),
         .init(id: 4, title: .cherry, image: "cherry", price: "$3.00 each", cardColor: "5"),
         .init(id: 5, title: .dragonfruit, image: "dragonfruit", price: "$1.04 each", cardColor: "6"),

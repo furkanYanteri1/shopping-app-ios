@@ -50,21 +50,47 @@ struct Counter: View {
 
 struct FruitDetailsView: View {
     @State var fruit: FruitTitle
+    @State private var showIntroPhase = true
+
     var body: some View {
         VStack(alignment: .leading, spacing: 25){
-            Image("bg")
-                .resizable()
-                .clipShape(topBgShape.init(corners: [.bottomLeft, .bottomRight], radius: 50))
-                .ignoresSafeArea(.all)
-                .frame(width: .infinity, height: .infinity, alignment: .top)
-                .shadow(color: .gray, radius: 5, x: 5, y: 5)
-                .overlay(
-                    Image("\(fruit.rawValue)")
-                        .resizable()
-                        .frame(width: 250, height: 250, alignment: .center)
-                        .shadow(color: .gray, radius: 5, x: 5, y: 5)
-                        .offset(y:50)
-                )
+            ZStack {
+                Image("bg") // Final background
+                    .resizable()
+                    .opacity(showIntroPhase ? 0 : 1)
+                
+                Image("\(fruit)s-bg") // Initial background
+                    .resizable()
+                    .opacity(showIntroPhase ? 1 : 0.2)
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    withAnimation(.easeInOut(duration: 1.0)) {
+                        showIntroPhase = false
+                    }
+                    // Show fruit image a bit after the fade starts or ends
+                }
+            }
+
+            .clipShape(topBgShape.init(corners: [.bottomLeft, .bottomRight], radius: 50))
+            .ignoresSafeArea(.all)
+            .frame(width: .infinity, height: .infinity, alignment: .top)
+            .shadow(color: .gray, radius: 5, x: 5, y: 5)
+            .overlay(
+                Group {
+                    if !showIntroPhase {
+                        Image("\(fruit.rawValue)")
+                            .resizable()
+                            .frame(width: 250, height: 250, alignment: .center)
+                            .shadow(color: .gray, radius: 5, x: 5, y: 5)
+                            .offset(y:50)
+                            .transition(.scale.combined(with: .opacity)) // Optional for animation
+                    }
+                }
+            )
+
+
+
             Spacer()
             Text("\(fruit.rawValue) - Medium")
                 .fontWeight(.medium)
