@@ -40,6 +40,9 @@ struct HomeView: View {
             Spacer()
             
         }.padding()
+            .navigationTitle("")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
     }
 }
 
