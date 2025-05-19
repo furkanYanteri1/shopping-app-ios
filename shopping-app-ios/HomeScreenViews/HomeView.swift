@@ -16,10 +16,10 @@ struct HomeView: View {
                 Image(systemName: "cart.badge.plus")
             }
             .font(.system(.title2))
-            Text("Hey")
+            Text("Golden Grove")
                 .font(.title)
                 .fontWeight(.bold)
-            Text("Find Fresh Fruits")
+            Text("Find Fresh Organic Fruits")
             RoundedRectangle(cornerRadius: 15)
                 .fill(.gray.opacity(0.3))
                 .overlay(
@@ -40,6 +40,9 @@ struct HomeView: View {
             Spacer()
             
         }.padding()
+            .navigationTitle("")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
     }
 }
 
